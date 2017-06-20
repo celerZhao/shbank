@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>加油卡充值</title>
+<link rel="stylesheet" href="css/global-mobile.css" />
+<link rel="stylesheet" href="css/layout-mobile.css" />
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem() {
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">加油卡充值<i class="iocn-"></i></div>
+        <span class="usercenter mar-duf">个人中心</span>
+    </div>
+    
+    <div class="row">
+        <ul class="list-unstyled list-p10 chongzhi">
+            <li>
+                <img class="icon-img" src="img/icon1.jpg">
+                <div class="txt">本期加油优惠额度:
+                    <span class="text-danger"><i id="balance">150.00</i>元</span>
+                </div>
+                <div class="txt">优惠时间:2017/10/04 - 2017/11/03</div>
+            </li>
+            <li>
+                <img class="icon-img" src="img/icon2.jpg">
+                <div class="txt">加油卡直充
+                    <i id="iocnJYKZC" class="icon-wenhao text-primary"></i>
+                    <span class="pull-right">9.5折</span>
+                </div>
+                <div class="btnbar">
+                    <div class="clear">
+                        <!--<span class="col-xs-6"></span>-->
+                        <span class="col-xs-6" style="margin-left: 50%;"><a id="balanceBtn" class="btn btn-primary disabled" href="javascript:void(0);">立即购买</a></span>
+                    </div>
+                    <div id="czTips" class="cztips hide">当前余额不足以购买此产品，可购买以下加油卡套餐</div>
+                </div>
+            </li>
+            <li>
+                <img class="icon-img" src="img/icon3.jpg">
+                <div class="txt">加油卡套餐
+                    <i id="iocnJYKTC" class="icon-wenhao text-primary"></i>
+                    <div class="pull-right"><span class="icon-txt text-danger">最高</span><span>9.3折</span></div>
+                </div>
+                <div class="btnbar clear">
+                    <span class="col-xs-6" id="And"><a class="btn btn-primary" href="javascript:void(0);">下载APP</a></span>
+                    <span class="col-xs-6" id="Ios"><a class="btn btn-primary" href="oil-card-package.html">立即购买</a></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="fs-12">充值时间：每天7:  00-23:00</div>
+
+    <div class="text-center bottom-logo">
+        <img class="logo" src="img/logo.png" />
+        <div>本服务由光汇云油提供</div>
+        <div>7 X 24小时客服电话：<a class="text-primary" href="tel:400-809-8888">400-809-8888</a></div>
+    </div>
+</div>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+$(function () {
+    var bOilApp = new bOilPlugIn(),
+        App = {
+        //开发模式(0前端，1后端)
+        status: 0,
+
+        init: function () {
+
+            // 判断安卓与IOS客户端
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if(isAndroid) {
+                $('#And').hide();
+                $('#Ios').addClass('margin-right');
+            }else if(isiOS) {}
+
+            var balance =$('#balance').html();
+            if (balance > 0) {
+                $('#balanceBtn').removeClass('disabled').attr('href', 'zhichong_index.html');
+            } else {
+                $('#balanceBtn').addClass('disabled').attr('href', 'javascript:void(0);');
+                $('#czTips').removeClass('hide');
+            }
+
+            //点击提交按钮时校验
+            $('#iocnJYKZC').on('click', function () {
+                var html = '<b>香港上市</b><ul>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>';
+                bOilApp.tips({
+                    title: '提示',
+                    closeId: '',
+                    btnNums: 1,
+                    content: html,
+                    btn: {
+                        btnSure: {
+                            text: '我知道了',
+                            href: 'javascript:void(0);'
+                        }
+                    },
+                    fixedHeight: true
+                });
+            });
+
+            //
+            $('#iocnJYKTC').on('click', function () {
+                var html = '<b>香港上市</b><ul>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>'
+                              + '<li>香港联交所主板上市公司，市值300亿</li>';
+                bOilApp.tips({
+                    title: '提示',
+                    closeId: '',
+                    btnNums: 1,
+                    content: html,
+                    btn: {
+                        btnSure: {
+                            text: '我知道了',
+                            href: 'javascript:void(0);'
+                        }
+                    },
+                    fixedHeight: true
+                });
+            });
+        }
+    };
+
+    App.init();
+});
+</script>
+</body>
+</html>

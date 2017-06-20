@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>个人中心</title>
+<link rel="stylesheet" href="css/global-mobile.css"/>
+<link rel="stylesheet" href="css/layout-mobile.css">
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem() {
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">个人中心<a class="pull-right introduce" href="业务介绍.html">业务介绍</a></div>
+    </div>
+   <div class="pagetit">客户基本信息</div>
+
+    <ul class="row list-unstyled list-border list-p10 per-center text-black">
+        <li>
+            手机号码：&nbsp;&nbsp;&nbsp;<span>186****2110</span>
+        </li>
+        <li>
+            客户类型：&nbsp;&nbsp;&nbsp;<span>光汇云油联名卡客户&nbsp;<a id="layerOneBtn" href="javascript:void(0);"><img class="user-img" src="img/personalCenter/img1.jpg"></a></span>
+        </li>
+        <li>
+            优惠时间：&nbsp;&nbsp;&nbsp;<span>2017/10/04 - 2018/10/03</span>
+        </li>
+        <li class="li-gap">
+            当前折扣：&nbsp;&nbsp;&nbsp;<span>加油卡直充9.5折</span>
+        </li>
+        <li class="li-gap">
+            <a class="li-a" href="personalcenter_quan.html">优惠卷<span class="pull-right text-gray"> 共6张<i class="icon-jiantou-copy1"></i></span></a>
+        </li>
+        <li>
+            <a class="li-a" href="oilCard.html">加油卡号<span class="pull-right"> 1045 1234 4567 4562 123<i class="icon-jiantou-copy1"></i></span></a>
+        </li>
+        <li>
+            <a class="li-a" href="设置支付密码.html">设置支付密码<span class="pull-right text-gray">未设置<i class="icon-jiantou-copy1"></i></span></a>
+
+        </li>
+        <li class="li-gap">
+            <a class="li-a" href="找回支付密码.html">找回支付密码<span class="pull-right text-gray">重新设置<i class="icon-jiantou-copy1"></i></span></a>
+        </li>
+        <li><a class="li-a" href="orderDetail.html">订单/充值明细<span class="pull-right text-gray"><i class="icon-jiantou-copy1"></i></span></a></li>
+        <li>
+            <span class="text-gray fs-12">累计充值金额：4000.00元</span></br>
+            <span class="text-gray fs-12">累计折扣金额：360.00元</span>
+        </li>
+    </ul>
+</div>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+var bOilApp = new bOilPlugIn(), 
+    App = {
+    //是否后端开发状态(0前端，1后端)
+    status: 0,
+
+    init: function () {
+        //通用弹层--带确定按钮自适应高度提示框
+        $('#layerOneBtn').on('click', function () {
+            var inputHtml = '<b class="block">您已办理和激活光汇云油联名卡，享受以下加油折扣优惠：</b>' +
+                    '<b class="block">激活联名卡首月：</b><ul> <li>从激活联名卡之日起，每个月享受1000元优惠加油额度。</li><li>加油卡充值为9.5折。</li></ul>' +
+                    '<b class="block">激活联名卡次月及以后：</b>核卡次月起，享受优惠折扣根据当月联名卡消费金额而定：<ul> <li>当月消费满2000元，享受光汇云油平台线上加油卡直充95折，优惠上限为50元/月（充值金额不限）；</li><li>消费未达到标准，享受光汇云油平台线上加油卡直充98折，优惠上限为20元/月（充值金额不限）。</li></ul>';
+            bOilApp.tips({
+                title: '光汇云油联名卡客户',
+                closeId: '',
+                btnNums: 1,
+                content: inputHtml,
+                btn: {
+                    btnSure: {
+                        text: '我知道了',
+                        href: 'javascript:void(0);'
+                    }
+                },
+                fixedHeight: true
+            });
+        });
+    }
+};
+
+$(function(){
+    App.init();
+});
+</script>
+</body>
+</html>

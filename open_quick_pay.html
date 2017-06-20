@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>上海银行用户专享</title>
+<link rel="stylesheet" href="css/global-mobile.css" />
+<link rel="stylesheet" href="css/layout-mobile.css" />
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem() {
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">开通快捷支付方式</div>
+    </div>
+
+    <div class="pagetit">请输入以下信息确认身份</div>
+    
+    <div class="row mb-30">
+        <form>
+            <ul class="list-unstyled list-p10 list-border">
+                <li>
+                    <div class="form-group">
+                        <input id="realName" class="form-control" type="text" maxlength="20" placeholder="请输入姓名">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="chinaId" class="form-control" type="tel" maxlength="18" placeholder="请输入身份证号">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="creditCard" class="form-control numSept" type="tel" maxlength="19" placeholder="请输入上海银行信用卡号">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="userPhone" class="form-control" type="tel" maxlength="11" placeholder="请输入预留上海银行的手机号">
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <a id="submitBtn" class="btn btn-primary" href="javascript:void(0);">确定</a>
+</div>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+$(function () {
+    var bOilApp = new bOilPlugIn(),
+        App = {
+        //开发模式(0前端，1后端)
+        status: 0,
+
+        init: function () {
+
+            //分割长号码4位数空格
+            bOilApp.NumberSeparation('numSept');
+
+            bOilApp.clearInput();
+
+            //点击提交按钮时校验
+            $('#submitBtn').on('click', function () {
+                var _this = this, res = bOilApp.submintForm(_this, '#realName','#chinaId','creditCard','userPhone');
+                if(res) {
+                    // 上海银行信用卡用户
+                    if (0) {
+
+                    } else {
+                        bOilApp.tips({
+                            title: '提示',
+                            closeId: '',
+                            btnNums: 2,
+                            content: '此业务仅支持上海银行信用卡客户使用，快去申请信用卡吧！',
+                            btn: {
+                                btnSure: {
+                                    text: '立即申请',
+                                    href: 'javascript:void(0);',
+                                    fun: function () {
+                                        var thisElement = $(this);
+                                        bOilApp.alertMsg('hello world~',thisElement);
+                                    },
+                                    display: true
+                                },
+                                btnCancle: {
+                                    text: '我知道了',
+                                    btnClass:'btn-primary',
+                                    href: 'javascript:void(0);',
+                                    fun: function () {
+                                        console.log('xiaoyu222222~~~~~~');
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+
+
+            });
+
+
+        }
+    };
+
+    App.init();
+});
+</script>
+</body>
+</html>

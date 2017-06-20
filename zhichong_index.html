@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="format-detection" content="telephone=no,email=no"/>
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no"/>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="description" content=""/>
+<meta name="author" content=""/>
+<title>上海银行-加油卡直充</title>
+<link rel="stylesheet" href="css/global-mobile.css"/>
+<link rel="stylesheet" href="css/layout-mobile.css"/>
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem() {
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container zhichong">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">加油卡直充</div>
+    </div>
+    <div class="tipbar row mt-n8"><span class="inner fs12">温馨提示:中石化最近升级优化,近日不能充值,敬请谅解</span></div>
+    <div class="pagetit">选择充值金额</div>
+    <div id="bugMount" class="bg_fff fluid-model text-center row pt-10 card-container">
+        <div class="col-xs-4">
+            <span class="inner active" _val="100">100元</span>
+        </div>
+        <div class="col-xs-4">
+            <span class="inner" _val="200">200元</span>
+        </div>
+        <div class="col-xs-4">
+            <span class="inner" _val="300">300元</span>
+        </div>
+    </div>
+    <div class="row bg_fff">
+        <div class="col-xs-12">
+            <span>剩余优惠额度: <span class="text-danger mr-20" id="free_left" _val="150"> 150元</span> 当前折扣: <span class="text-danger" id="free_num" _free="9.5">9.5折</span></span>
+        </div>
+    </div>
+    <div class="row bg_fff mt-10 clear">
+        <div class="col-xs-12 pt-15 pb-15">
+            <a class="text-gray block clear" href="oil-card-add.html">
+                <label class="left link_label" for="">加油卡号</label>
+                <span class="pull-right">未绑定<i class="icon-jiantou-copy1 link_arrow"></i></span>
+            </a>
+        </div>
+    </div>
+    <div class="row bg_fff mt-10 clear">
+        <div class="col-xs-12 pt-15 pb-15">
+            <a class="text-gray block clear" href="zhichong_select_quan.html">
+                <label class="left link_label" for="">使用优惠券</label>
+                <span class="pull-right">未使用<i class="icon-jiantou-copy1 link_arrow"></i></span>
+            </a>
+        </div>
+    </div>
+    <div class="row bg_fff mt-10 clear">
+        <div class="col-xs-12 pt-15 pb-15">
+            <a class="text-gray block clear" href="zhichong_select_quan.html">
+                <label class="left link_label" for="">实付金额</label>
+                <span class="pull-right text-danger">¥95.00</span>
+            </a>
+        </div>
+    </div>
+    <div class="form-group mt-20">
+        <a id="submitBtn" class="btn btn-primary " href="javascript:void(0);"></a>
+    </div>
+    <div class="explain">
+        <p>
+            说明：
+        <ol>
+            <li>如您选择购买金额在剩余优惠额度以内，按照当前折扣费率支付款项</li>
+            <li>享受更多折扣可购买套餐</li>
+        </ol>
+        </p>
+    </div>
+</div>
+
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+var bOilApp = new bOilPlugIn(),
+    App = {
+    status:0,   // 0 前端开发，1 后端开发
+
+    isHaspwd: 0,
+
+    init: function () {
+        var nTime = 0;
+        /**
+         * 充值金额选择
+         */
+        $(".card-container .inner").on("click",function(){
+            $(this).addClass('active').parent().siblings().find('.inner').removeClass('active');
+            var _val = $(this).attr("_val");
+            var _free = $('#free_num').attr("_free");
+            $('#allAmount').html('￥' + (_val * _free / 10).toFixed(2));
+        })
+
+        // 若时间为7点到晚11点，则按钮为灰色，按钮显示“充值时间：7:00-23:00”
+        nTime = new Date().getHours();
+        if(nTime < 7 || nTime >= 23){
+            $("#submitBtn").text("充值时间：7:00-23:00").addClass("disabled").removeClass("btn-primary");
+        }else{
+            $("#submitBtn").text("立即购买").addClass("btn-primary").removeClass("disabled").on("click", function () {
+                var bugMount = Number($('#bugMount .active').attr('_val')), free_left = Number($('#free_left').attr('_val'));
+                if(nTime < 7 || nTime >= 23){
+                    $("#submitBtn").text("充值时间：7:00-23:00").addClass("disabled").removeClass("btn-primary");
+                }else {
+                    if (bugMount > free_left) {
+                        return bOilApp.alertMsg('请选择优惠额度范围内的产品');
+                    }
+
+                    if (App.isHaspwd) {//已经设置了支付密码
+                        App.inputPassword();
+                    } else { // 未设置支付密码
+                        App.setPassword();
+                    }
+                    //密码框显示模式
+                    bOilApp.pwdShowHide('dealPassword', 'reDealPassword');
+                }
+            });
+        }
+
+        //公告弹框： 中石化系统升级，无法充值
+        if( $('.tipbar span').length >0){
+            bOilApp.tips({
+                title: '公告',
+                closeId: 'tipsCloseBtn',
+                content: "温馨提示：中石化最近升级优化，今日不能充值，敬请谅解",
+                btnNums: 1,
+                btn: {
+                    btnSure: {
+                        text: '我知道了',
+                        href: 'javascript:void(0);',
+                        refresh: true
+                    }
+                },
+                alone: true
+            });
+        }
+
+    },
+    
+    /**
+     * 输入框、清除按钮 事件
+     */
+    initEvent: function () {
+        //点击验证码时校验
+        $('#phoneCodeBtn').on('click', function () {
+            var _this = this, thisId = $(_this).attr('id'), res = bOilApp.getPhoneCord(_this, '#dealPassword', 'reDealPassword');
+            if (App.status) {//后端开发
+                if (res) {
+                    //前端校验通过,后端请求
+                    $.ajax({
+                        url: '',
+                        dataType: '',
+                        data: {},
+                        type: 'post',
+                        success: function () {
+                            //to do something...
+
+                            //执行倒计时
+                            bOilApp.codeTime(thisId);
+                        },
+                        error: function () {
+
+                        }
+                    });
+                }
+            } else {//前端开发
+                if (res) {
+                    //执行倒计时
+                    bOilApp.codeTime(thisId);
+                    //$('#hideTips').removeClass('hidden');
+                }
+            }
+        });
+    },
+    /**
+     * 输入密码
+     */
+    inputPassword: function () {
+        var inputHtml = '<form class="zhichong"><ul class="list-unstyled list-p5">'
+                + '<li><div class="form-group "><input id="dealPassword" class="form-control no_border" type="password" maxlength="6" placeholder="请输入支付密码"></div>'
+                + '</li>'
+                +'<li><div class="form-group text_tips "> <span class="pull-left"></span>注：输入光汇云油平台的支付密码<a href="找回支付密码.html" class="pull-right text-primary">忘记密码</a></div></li></ul></form>';
+        bOilApp.tips({
+            title: '支付密码',
+            closeId: '',
+            btnNums: 2,
+            content: inputHtml,
+            btn: {
+                btnSure: {
+                    text: '确　定',
+                    href: 'javascript:void(0);',
+                    fun: function () {
+                        return function (thisElement) {
+                            var _this = thisElement, res = bOilApp.submintForm(_this, '#dealPassword');
+
+                            if (App.status) {
+                                if (res) {
+                                    //前端校验通过,后端请求
+                                    $.ajax({
+                                        url: '',
+                                        dataType: '',
+                                        data: {},
+                                        type: 'post',
+                                        success: function () {
+                                            window.location.href = 'zhichong_confirm.html'
+                                            //等候加载提示
+                                            bOilApp.alertMsg(bOilApp.loadingText, _this, 'loading');
+                                        },
+                                        error: function () {
+
+                                        }
+                                    });
+                                }
+                            } else {
+                                if (res) {
+                                    window.location.href = 'zhichong_confirm.html';  // 确认页面
+                                    //跳转页面前的等候加载提示
+                                    bOilApp.alertMsg(bOilApp.loadingText, _this, 'loading');
+                                }
+                            }
+                        };
+                    },
+                    display: true
+                },
+                btnCancle: {
+                    text: '取　消',
+                    href: 'javascript:void(0);'
+                }
+            }
+        });
+    },
+
+    /**
+     * 设置密码
+     */
+    setPassword: function () {
+        //调用表单校验插件
+        var inputHtml = '<form class="zhichong"><ul class="list-unstyled list-p5">'
+                + '<li><div class="form-group"><input id="dealPassword" class="form-control no_border" type="password" maxlength="6" placeholder="请设置支付密码（6位数字）"></div></li>'
+                + '<li><div class="form-group"><input id="reDealPassword" class="form-control no_border" type="password" maxlength="6" placeholder="请确认支付密码（6位数字）"></div></li>'
+                + '<li><div class="form-group clear">'
+                + '<span class="left"><input id="phoneCode" class="form-control no_border" type="tel" maxlength="6" placeholder="请输入短信验证码"></span><span class="right">'
+                + '<a id="phoneCodeBtn" class="btn btn-primary" href="javascript:void(0);">获取验证码</a>'
+                + '</span></div></li>'
+                + '<li><div id="hideTips" class="text-center text-gray">向手机号<span class="phoneNum_black">139****6666</span>发送验证码<br>注：设置为光汇云油平台的支付密码</div></li>'
+                + '</ul></form>';
+        bOilApp.tips({
+            title: '设置支付密码',
+            closeId: '',
+            btnNums: 2,
+            content: inputHtml,
+            btn: {
+                btnSure: {
+                    text: '确　定',
+                    href: 'javascript:void(0);',
+                    fun: function () {
+                        return function (thisElement) {
+                            debugger;
+                            var _this = thisElement, res = bOilApp.submintForm(_this, '#dealPassword', '#reDealPassword');
+
+                            if (App.status) {
+                                if (res) {
+                                    //前端校验通过,后端请求
+                                    $.ajax({
+                                        url: '',
+                                        dataType: '',
+                                        data: {},
+                                        type: 'post',
+                                        success: function () {
+                                            setTimeout(function() {
+                                                $('#btnCancle').trigger('click');
+                                                App.isHaspwd = true;
+                                            }, 2000);
+                                            //等候加载提示
+                                            bOilApp.alertMsg(bOilApp.loadingText, _this, 'loading');
+                                        },
+                                        error: function () {
+
+                                        }
+                                    });
+                                }
+                            } else {
+                                if (res) {
+                                    setTimeout(function() {
+                                        $('#btnCancle').trigger('click');
+                                        App.isHaspwd = true;
+                                    }, 2000);
+                                    //跳转页面前的等候加载提示
+                                    bOilApp.alertMsg(bOilApp.loadingText, _this, 'loading');
+                                }
+                            }
+                        };
+                    },
+                    display: true
+                },
+                btnCancle: {
+                    text: '取　消',
+                    href: 'javascript:void(0);'
+                }
+            }
+        });
+        App.initEvent();
+    }
+};
+
+$(function () {
+    App.init();
+});
+</script>
+</body>
+</html>

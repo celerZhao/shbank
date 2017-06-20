@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>上海银行-添加加油卡</title>
+<link rel="stylesheet" href="css/global-mobile.css" />
+<link rel="stylesheet" href="css/layout-mobile.css" />
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem(){
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">绑定加油卡</div>
+    </div>
+
+    <div class="pagetit"><span class="inner">绑定加油卡(仅能绑定一张)</span></div>
+
+    <ul class="list-unstyled list-border list-p10 row oc-form">
+        <li>
+            <div class="form-group">
+                <input id="oilCard" class="form-control numSept" type="tel" maxlength="23" placeholder="请输入加油卡主卡号">
+            </div>
+        </li>
+        <li>
+            <div class="form-group">
+                <input id="reOilCard" class="form-control numSept" type="tel" maxlength="23" placeholder="请再次输入以确认">
+            </div>
+        </li>
+    </ul>
+    <div class="pagetit text-default fs-12">
+        <span class="text-danger">*</span>请仔细核对加油卡号，以免充错加油卡号，造成损失<br>充值成功后，将发送短信至以下手机号
+    </div>
+    <div class="row mb-30 pt-15 pr-15 pb-15 pl-15 text-black bg-white">186****8888</div>
+
+    <div class="mb-10">
+        <a id="bindBtn" class="btn btn-primary" href="javascript:void(0);">确认绑定</a>
+    </div>
+
+    <div class="text-gray fs-12">
+        <p>绑卡说明：</p>
+        <ol>
+            <li>一个账户只能绑定一张中石油或中石化个人记名加油卡。</li>
+            <li>请仔细核对加油卡号，以免充值到他人油卡造成损失。</li>
+            <li>支持全国中石油/中石化个人记名主卡，不支持副卡、增值税发票卡、BP卡、车队卡、不记名卡。</li>
+            <li>用户购买加油套餐后，资金会按照充值日程安排自动充值到您绑定的加油卡中，无需客户手动充值。</li>
+            <li>中石油加油卡客户需自行在中石油昆仑加油卡官网注册账号才可充值。</li>
+            <li>如您成功购买套餐并充值成功后，需 90 天后才可以更换加油卡号</li>
+        </ol>
+    </div>
+</div>
+
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+var bOilApp = new bOilPlugIn(),
+    App = {
+    //是否后端开发状态(0前端，1后端)
+    status: 0,
+
+    init: function () {
+
+        $(".back").on("click",function(){
+            window.history.go(-1);
+        })
+
+        //分割长号码4位数空格
+        bOilApp.NumberSeparation('numSept');
+
+        bOilApp.clearInput();
+
+        //点击绑定按钮时校验
+        $('#bindBtn').on('click', function () {
+            var _this = this, res = bOilApp.submintForm(_this, '#oilCard', '#reOilCard');
+
+            if (App.status) {
+                if (res) {
+                    //验证成功之后，添加绑卡
+                    //window.location.href = 'oil-card-buy.html';
+                }
+            } else {//前端开发
+                if (res) {
+                    window.location.href='oil-card-buy.html';
+                }
+            }
+        });
+    }
+};
+
+$(function(){
+    App.init();
+});
+</script>
+</body>
+</html>

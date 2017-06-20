@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>上海银行-订单支付成功</title>
+<link rel="stylesheet" href="css/global-mobile.css" />
+<link rel="stylesheet" href="css/layout-mobile.css" />
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem(){
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">订单支付成功</div>
+    </div>
+
+    <div class="row mt-n8 bg-white">
+        <div class="mb-10 pt-15 pb-15 text-center text-black fs-24 oc-order-icon"><span class="suc">支付成功</span></div>
+        <div class="pl-15 pr-15">
+            <div class="text-default">
+                <p>加油卡号：1234 5678 1234 5678 123</p>
+                <p>充值套餐：1500元,3个月</p>
+                <p>您的充值套餐第一期已充值成功，含：充值金额500.00元</p>
+                <p class="mt-25 fs-12 text-cc">充值时间一般为10分钟以内，请稍后在加油站圈存机完成圈存后即可加油。</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-30 clear">
+        <div class="col-xs-6 back-home">
+            <a class="btn btn-primary" href="oil-card-package.html">返回首页</a>
+        </div>
+        <div class="col-xs-6" id="And">
+            <a class="btn btn-primary" href="javascript:;">更多优惠下载APP</a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+    $(function() {
+        // 判断安卓与IOS客户端
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isAndroid) {
+            $('#And').hide();
+            $('.back-home').css('margin-left','25%');
+        }else if(isiOS) {}
+    })
+</script>
+</html>

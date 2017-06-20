@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>上海银行用户专享</title>
+<link rel="stylesheet" href="css/global-mobile.css" />
+<link rel="stylesheet" href="css/layout-mobile.css" />
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem() {
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container" style="height: 100%;margin-bottom: 0;">
+    <div class="topbar" style="position: fixed;top: 0;left: 0;z-index: 10;width: 100%;">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">上海银行信用卡用户专享</div>
+    </div>
+
+    <div class="pagetit">请输入以下信息确认身份</div>
+    
+    <div class="row mb-30">
+        <form>
+            <ul class="list-unstyled list-p10 list-border">
+                <li>
+                    <div class="form-group">
+                        <input id="realName" name="realName" class="form-control" type="text" maxlength="20" placeholder="请输入姓名">
+                    </div>
+                </li>
+                <li style="padding: 0.8rem 0;">
+                    <div class="form-group">
+                        <select class="form-control" name="certType" style="height: 4rem;">
+                            <option value="1" selected="selected">身份证</option>
+                            <option value="2">护照</option>
+                            <option value="3">军官证</option>
+                            <option value="4">士兵证</option>
+                            <option value="5">户口本</option>
+                            <option value="6">警官证</option>
+                            <option value="7">台胞证</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="cardId" name="chinaId" class="form-control" type="text" placeholder="请输入证件号">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="creditCard" name="creditCard" class="form-control numSept" type="tel" maxlength="19" placeholder="请输入上海银行信用卡号">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="cvv" name="cvv" class="form-control" type="tel" maxlength="3" placeholder="请输入卡背面签名栏的后三位数字">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="validity" name="validity" class="form-control" type="tel" maxlength="4" placeholder="请输入信用卡有效期MMYY">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input id="userPhone" name="userPhone" class="form-control " type="tel" maxlength="11" placeholder="请输入预留上海银行的手机号">
+                    </div>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+    <a id="submitBtn" class="btn btn-primary" href="javascript:void(0);">确定</a>
+    <div style="height: 30px;width:100%;"></div>
+    <div class="lastH" style="width: 100%;height: 50%;display: none;"></div>
+</div>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+var bOilApp = new bOilPlugIn(),
+    App = {
+    //开发模式(0前端，1后端)
+    status: 0,
+    isClick: false,
+
+    init: function () {
+
+        // 判断安卓与IOS客户端
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        if(isAndroid) {
+            $('.lastH').show();
+
+        }else {
+            $('.lastH').hide();
+        }
+
+
+        //分割长号码4位数空格
+        bOilApp.NumberSeparation('numSept');
+
+        bOilApp.clearInput();
+
+        //点击提交按钮时校验
+        $('#submitBtn').on('click', function () {
+            if(App.isClick) {return false;}
+            App.isClick = true;
+            setTimeout(function() {
+                App.isClick = false;
+            },2000);
+
+            var _this = this, res = bOilApp.submintForm(_this, '#realName','#chinaId','creditCard','userPhone');
+            if(res) {
+            // 上海银行信用卡用户
+            if (0) {
+
+            } else {
+                bOilApp.tips({
+                    title: '提示',
+                    closeId: '',
+                    btnNums: 2,
+                    content: '此业务仅支持上海银行信用卡客户使用，快去申请信用卡吧！',
+                    btn: {
+                        btnSure: {
+                            text: '立即申请',
+                            href: 'javascript:void(0);',
+                            fun: function () {
+                                var thisElement = $(this);
+                                bOilApp.alertMsg('hello world~',thisElement);
+                            },
+                            display: true
+                        },
+                        btnCancle: {
+                            text: '我知道了',
+                            btnClass:'btn-primary',
+                            href: 'javascript:void(0);',
+                            fun: function () {
+                                console.log('xiaoyu222222~~~~~~');
+                            }
+                        }
+                    }
+                });
+             }
+            }
+        });
+    }
+};
+
+$(function(){
+    App.init();
+});
+</script>
+</body>
+</html>

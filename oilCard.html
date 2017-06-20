@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>加油卡</title>
+<link rel="stylesheet" href="css/global-mobile.css" />
+<link rel="stylesheet" href="css/layout-mobile.css" />
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem(){
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">加油卡</div>
+    </div>
+    <ul class="row list-unstyled list-border list-p10 pt-5 pb-5 per-center text-black">
+        <li>
+            加油卡<span class="pull-right text-gray"> 1045 1234 4567 4562 123</span>
+        </li>
+        <li>
+            总待返还金额<span class="pull-right text-gray"> 0.00元</span>
+        </li>
+        <li>
+            短信通知手机<span class="pull-right text-gray"> 186****2110</span>
+        </li>
+    </ul>
+
+    <div>
+        <div class="form-group pt-30">
+            <a class="btn btn-primary" href="oil-card-add.html">更换加油卡</a>
+            <a class="btn btn-primary disabled" href="oil-card-add.html">更换加油卡</a>
+        </div>
+        <div class="text-gray">
+            <p class="fs-10">如您成功购买商品且充值成功后，需90天后才可更换加油卡号</p>
+        </div>
+    </div>
+</div>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+var bOilApp = new bOilPlugIn(),
+    App = {
+    //是否后端开发状态(0前端，1后端)
+    status: 0,
+
+    init: function () {
+
+    }
+};
+
+$(function(){
+    App.init();
+});
+</script>
+</body>
+</html>

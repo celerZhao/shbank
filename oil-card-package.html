@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="ML-Config" content="fullscreen=yes,preventMove=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>上海银行-加油卡套餐</title>
+<link rel="stylesheet" href="css/global-mobile.css" />
+<link rel="stylesheet" href="css/layout-mobile.css" />
+<script>
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem(){
+    var dpr = 1;
+    var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+    if (pxPerRem < 10) pxPerRem = 10;
+    if (pxPerRem > 20) pxPerRem = 20;
+    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="topbar row">
+        <i class="icon-xiangxiafanye back"></i>
+        <div class="tit">加油卡套餐</div>
+    </div>
+    <div class="tipbar row mt-n8"><span class="inner fs12 ">温馨提示:中石化最近升级优化,近日不能充值,敬请谅解</span><i class="iconfont link_arrow icon-jiantou-copy2 fs-12 text-danger"></i></div>
+
+    <div class="pagetit">每月充值金额</div>
+    <div class="row pt-10 bg-white">
+        <div id="amountPerMonth" class="fluid-model text-center">
+            <div class="col-xs-4">
+                <span class="inner"><i data-amount="100">100</i>元</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="inner"><i data-amount="200">200</i>元</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="inner active"><i data-amount="500">500</i>元</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pagetit">选择充值套餐</div>
+    <div class="row bg-white pt-10 pb-10">
+        <div id="selPackage" class="fluid-model text-center fs12">
+            <div class="col-xs-4">
+                <span class="inner" data-month="1" data-deposit='1'>
+                    <i class="fs20">无</i>折扣
+                    <span>即充即用</span>
+                </span>
+            </div>
+            <div class="col-xs-4">
+                <span class="inner active" data-month="3" data-deposit="0.97">
+                    <i class="fs20">9.7</i>折
+                    <span class="block">充值3个月</span>
+                </span>
+            </div>
+            <div class="col-xs-4">
+                <span class="inner" data-month="6" data-deposit="0.95">
+                    <i class="fs20">9.5</i>折
+                    <span class="block">充值6个月</span>
+                </span>
+            </div>
+            <div class="col-xs-4">
+                <span class="inner" data-month="9" data-deposit="0.93">
+                    <i class="fs20">9.3</i>折
+                    <span class="block">充值9个月</span>
+                </span>
+            </div>
+            <div class="col-xs-4">
+                <span class="inner" data-month="12" data-deposit="0.92">
+                    <i class="fs20">9.2</i>折
+                    <span class="block">充值12个月</span>
+                </span>
+            </div>
+            <div class="col-xs-4">
+                <span class="inner" data-month="24" data-deposit="0.88">
+                    <i class="fs20">8.8</i>折
+                    <span class="block">充值24个月</span>
+                </span>
+            </div>
+        </div>
+        <div class="text-center">充值<span id="months">3</span>个月,每月自动到账,当天到账第1笔</div>
+        <div class="text-center">原价<span id="total" class="text-danger text-through">1500</span>元 折扣价<span id="deposit" class="text-danger">1455</span>元 共省<span id="free" class="text-danger">45</span>元</div>
+    </div>
+
+    <ul class="row list-unstyled list-p10 list-border setdpwd mt-10">
+        <li>
+            <label>充值明细</label>
+            <div id="rechargeDetail" class="form-control pr-15 text-danger text-right"><span id="monthPrice">500</span>元/每月*<span id="monthNum">3</span>个月=<span id="monthPriceTotal">1500</span>元</div>
+            <i class="iconfont icon-jiantou-copy2"></i>
+        </li>
+    </ul>
+    <div class="mt-5 fs12 text-gray text-right">首月<span id="monthFirst">500</span>元，在购买后10分钟内到账</div>
+
+    <div class="mt-30 mb-10">
+        <a id="layerBtnInput" class="btn btn-primary" href="oil-card-buy.html">下一步</a>
+        <!--注：该注释为灰色按钮，样式为：btn-gray
+        <a class="btn btn-gray" href="javascript:void(0);">充值时间：7:00-23:00</a>-->
+    </div>
+
+    <div id="layerOneBtnRefresh" class="fs12 text-primary text-center">分月返还套餐代充值服务说明</div>
+
+    <div class="text-center bottom-logo">
+        <img class="logo" src="img/logo.png" />
+        <div>本服务由光汇云油提供</div>
+        <div>7 X 24小时客服电话：<a class="text-primary" href="tel:400-809-8888">400-809-8888</a></div>
+    </div>
+</div>
+
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script src="js/nativeShare/nativeShare.js"></script>
+<script>
+var bOilApp = new bOilPlugIn(),
+    App = {
+    //是否后端开发状态(0前端，1后端)
+    status: 0,
+
+    init: function () {
+        //选择充值套餐
+        $('#amountPerMonth .inner').on('click', function () {
+            var _this = $(this);
+            if (!_this.hasClass('active')) {
+                _this.addClass('active').parent().siblings().find('.inner').removeClass('active');
+            }
+
+            var _this  = $('#selPackage .col-xs-4'),
+                _thisInner = _this.find('.active'),
+                months = _thisInner.attr('data-month'),
+                deposit= _thisInner.attr('data-deposit'),
+                amount = $(this).find('i').attr('data-amount');
+
+            $('#monthPrice').text(amount);
+            $('#monthNum').text(months);
+            $('#monthPriceTotal').text(amount * months);
+            $('#monthFirst').text(amount);
+
+            if (months === 1) {//选择无折扣
+                $('#total').html(amount)
+            } else {
+                $('#months').text(months);
+                $('#total').html(amount * months);
+                $('#deposit').html((amount * months * deposit).toFixed(2));
+                $('#free').html( $('#total').html() - $('#deposit').html());
+            }
+        });
+
+        $('#selPackage .col-xs-4').on('click', function () {
+            var _this  = $(this),
+                _thisInner = _this.find('.inner'),
+                months = _thisInner.attr('data-month'),
+                deposit= _thisInner.attr('data-deposit'),
+                amount = $('#amountPerMonth .active').find('i').attr('data-amount');
+            if (!_thisInner.hasClass('active')) {
+                _thisInner.addClass('active').parent().siblings().find('.inner').removeClass('active');
+            }
+
+            if (months === 1) {//选择无折扣
+                $('#total').html(amount)
+            } else {
+                $('#months').text(months);
+                $('#total').html(amount * months);
+                $('#deposit').html((amount * months * deposit).toFixed(2));
+                $('#free').html( $('#total').html() - $('#deposit').html());
+                $('#monthNum').text(months);
+                $('#monthPriceTotal').text(amount * months);
+            }
+        });
+
+        //充值明细
+        $('#rechargeDetail').on('click', function () {
+            var htm = '<ul class="row list-unstyled rechargeList"><li><span class="left">到账金额</span><span class="right">到账时间</span></li>'
+                 + '<li><span class="left">500元（1/3）</span><span class="right">预计10分钟</span></li>'
+                 + '<li><span class="left">500元（2/3）</span><span class="right">预计10分钟</span></li>'
+                 + '</ul>';
+            bOilApp.tips({
+                title: '充值明细',
+                closeId: 'tipsCloseBtn',
+                content: htm
+            });
+        });
+
+        //分月返还套餐代充值服务说明
+        $('#layerOneBtnRefresh').on('click', function () {
+            bOilApp.tips({
+                title: '分月返还套餐代充值服务说明',
+                closeId: '',
+                btnNums: 1,
+                content: '购买成功后当天充值第一笔，后续每个月充值当月的一笔，如遇当月不存在此日期，该月最后一天到账',
+                btn: {
+                    btnSure: {
+                        text: '我知道了',
+                        href: 'javascript:void(0);',
+                        refresh: true
+                    }
+                },
+                alone: true
+            });
+        });
+
+        //公告弹框： 中石化系统升级，无法充值
+        if( $('.tipbar span').length >0){
+            bOilApp.tips({
+                title: '公告',
+                closeId: 'tipsCloseBtn',
+                content: "温馨提示：中石化最近升级优化，今日不能充值，敬请谅解",
+                btnNums: 1,
+                btn: {
+                    btnSure: {
+                        text: '我知道了',
+                        href: 'javascript:void(0);',
+                        refresh: true
+                    }
+                },
+                alone: true
+            });
+        };
+
+        // 充值卡暂停公告
+        $('.tipbar').on('click', function() {
+          window.location.href = 'oil-card-notice.html';
+        });
+
+
+    }
+};
+
+$(function(){
+    App.init();
+});
+</script>
+</body>
+</html>

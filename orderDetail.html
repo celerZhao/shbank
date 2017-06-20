@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="ML-Config" content="fullscreen=yes,preventMove=no"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>明细</title>
+    <link rel="stylesheet" href="css/global-mobile.css"/>
+    <link rel="stylesheet" href="css/layout-mobile.css"/>
+    <link rel="stylesheet" href="css/personalCerter.css"/>
+    <!--<link rel="stylesheet" href="js/listloading/listloading.css" />-->
+    <script>
+        var cssEl = document.createElement('style');
+        document.documentElement.firstElementChild.appendChild(cssEl);
+        function setPxPerRem() {
+            var dpr = 1;
+            var pxPerRem = document.documentElement.clientWidth * dpr / 32;
+            if (pxPerRem < 10) pxPerRem = 10;
+            if (pxPerRem > 20) pxPerRem = 20;
+            cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+        }
+        setPxPerRem();
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row fixed_head" id="_fixed_top">
+        <div class="topbar marg">
+            <i class="icon-xiangxiafanye back"></i>
+
+            <div class="tit">明细</div>
+        </div>
+
+        <div class="row bk-order pt-10">
+            <div id="order" class="pull-left text order-box"><a href="javascript:void(0);">订单</a></div>
+            <div id="recharge" class="pull-right text "><a href="javascript:void(0);">充值</a></div>
+        </div>
+
+    </div>
+
+    <div class="row order-list" id="listLoading">
+        <div class="pt-10 pb-10 text-gray card bk-new">订单明细为加油卡套餐和直冲两种产品的购买明细</div>
+        <ul class="list-unstyled" id="orderList">
+            <li>
+                <div class="date pt-5 text-gray card">2017年3月</div>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112121</span><span class="pull-right text-info">购买成功</span>
+                    </li>
+                    <li>商品名称：<span>加油卡直充100元</span></li>
+                    <li>应付金额：<span>100元&nbsp;&nbsp;</span>折扣：<span>9.8折&nbsp;&nbsp;</span>优惠：<span>2元</span></li>
+                    <li>实付金额：<span class="text-danger">98元</span></li>
+                    <li>购买日期：<span>2017-03-02 5:30</span></li>
+                </ul>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112122</span><span class="pull-right text-info">购买成功</span>
+                    </li>
+                    <li>商品名称：<span>加油卡直充100元 3个月</span></li>
+                    <li>应付金额：<span>300元&nbsp;&nbsp;</span>折扣：<span>9.8折&nbsp;&nbsp;</span>优惠：<span>6元</span></li>
+                    <li>实付金额：<span class="text-danger">294元</span></li>
+                    <li>购买日期：<span>2017-03-01 15:30</span></li>
+                </ul>
+            </li>
+            <li>
+                <div class="date pt-5 text-gray card">2017年2月</div>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112121</span><span class="pull-right text-info">购买成功</span>
+                    </li>
+                    <li>商品名称：<span>加油卡直充100元</span></li>
+                    <li>应付金额：<span>100元&nbsp;&nbsp;</span>折扣：<span>9.5折&nbsp;&nbsp;</span>优惠：<span>5元</span></li>
+                    <li>实付金额：<span class="text-danger">95元</span></li>
+                    <li>购买日期：<span>2017-02-10 5:30</span></li>
+                </ul>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112122</span><span class="pull-right text-danger">购买失败</span>
+                    </li>
+                    <li>商品名称：<span>加油卡直充100元 3个月</span></li>
+                    <li>应付金额：<span>100元&nbsp;&nbsp;</span>折扣：<span>无折&nbsp;&nbsp;</span>优惠：<span>0元</span></li>
+                    <li>实付金额：<span class="text-danger">100元</span></li>
+                    <li>购买日期：<span>2017-02-01 15:30</span></li>
+                </ul>
+            </li>
+        </ul>
+        <div id="viewMore" class="pt-10 text-info fs-12 text-center"><a href="javascript:void(0);">点击查看更多明细</a></div>
+
+    </div>
+
+    <div class="recharge-list row hide" id="listLoading2">
+        <div class="pt-10 pb-10 text-gray card bk-new">充值明细为买完产品后，要正式充值到账到中石油/中石化卡上的每一期记录</div>
+        <ul class="list-unstyled" id="orderList2">
+            <li>
+                <div class="date pt-5 text-gray card">2017年3月</div>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112121</span><span class="pull-right text-info">充值成功</span>
+                    </li>
+                    <li>商品名称：<span>加油卡直充100元</span></li>
+                    <li>充值金额：<span class="text-danger">100元(1/1)</span></li>
+                    <li>购买日期：<span>2017-03-02 5:30</span></li>
+                </ul>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112122</span><span class="pull-right text-info">充值成功</span>
+                    </li>
+                    <li>商品名称：<span>加油卡套餐100元 3个月</span></li>
+                    <li>实付金额：<span class="text-danger">100元(1/3)</span></li>
+                    <li>购买日期：<span>2017-03-01 15:30</span></li>
+                </ul>
+            </li>
+            <li>
+                <div class="date pt-5 text-gray card">2017年2月</div>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112121</span><span class="pull-right text-info">充值成功</span>
+                    </li>
+                    <li>商品名称：<span>加油卡直充200元</span></li>
+                    <li>充值金额：<span class="text-danger">200元(1/1)</span></li>
+                    <li>购买日期：<span>2017-02-10 5:30</span></li>
+                </ul>
+                <ul class="list-unstyled list-p5 card">
+                    <li>订单号：<span>&nbsp;&nbsp;170302150211112122</span><span class="pull-right text-danger">充值失败</span>
+                    </li>
+                    <li>商品名称：<span>加油卡直充100元 3个月</span></li>
+                    <li>充值金额：<span class="text-danger">100元(2/3)</span></li>
+                    <li>购买日期：<span>2017-02-01 15:30</span></li>
+                </ul>
+            </li>
+        </ul>
+        <div id="viewMore2" class="pt-10 text-info fs-12 text-center"><a href="javascript:void(0);">点击查看更多明细</a></div>
+    </div>
+</div>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/bOilPlugIn/bOilPlugIn.js"></script>
+<script>
+    var bOilApp = new bOilPlugIn(),
+            App = {
+                //是否后端开发状态(0前端，1后端)
+                status: 0,
+                init: function () {
+                    //订单与充值页面转换
+                    //点击订单
+                    $('#order').on('click', function () {
+                        $('.order-list').show();
+                        $('.recharge-list').hide();
+                        $('#order').addClass('order-box');
+                        $('#recharge').removeClass('order-box');
+                        $('#recharge a').css('color', 'black');
+                        $('#order a').css('color', '#187EEA');
+                    });
+                    //点击充值
+                    $('#recharge').on('click', function () {
+                        $('.recharge-list').removeClass('hide').show();
+                        $('.order-list').hide();
+                        $('#recharge').addClass('order-box');
+                        $('#order').removeClass('order-box');
+                        $('#order a').css('color', 'black');
+                        $('#recharge a').css('color', '#187EEA');
+                    });
+
+                    $("#viewMore").on("click", function () {
+                        addMore();
+                    })
+                    $("#viewMore2").on("click", function () {
+                        addMore2();
+                    })
+                    // 创建iscroll之前必须要先设置父元素的高度，否则无法拖动iscroll
+                    var m = 3, n = 0, h = $(window).height();
+                    $('#listLoading').height(h - $("#_fixed_top").clientHeight);
+
+                    // 模板
+                    var createHtml = function () {
+                        var __html = '<li><div class="date pt-5 text-gray card">2017年2月</div>';
+                        for (var i = 0; i < 4; i++) {
+                            __html += '<ul class="list-unstyled list-p5 card">'
+                                    + '<li>订单号：<span>&nbsp;&nbsp;170302150211112121</span><span class="pull-right text-info">充值成功</span>'
+                                    + '</li>'
+                                    + '<li>商品名称：<span>加油卡直充200元</span></li>'
+                                    + '<li>充值金额：<span class="text-danger">200元(1/1)</span></li>'
+                                    + '<li>购买日期：<span>2017-02-10 5:30</span></li>'
+                                    + '</ul>';
+                        }
+                        __html += '</li>';
+                        return __html;
+                    }
+
+                    var createHtml2 = function () {
+                        var __html = '<li><div class="date pt-5 text-gray card">2017年2月</div>';
+                        for (var i = 0; i < 4; i++) {
+                            __html += '<ul class="list-unstyled list-p5 card">'
+                                    +'<li>订单号：<span>&nbsp;&nbsp;170302150211112121</span><span class="pull-right text-info">充值成功</span>'
+                                    +'</li>'
+                                    +'<li>商品名称：<span>加油卡直充200元</span></li>'
+                                    +'<li>充值金额：<span class="text-danger">200元(1/1)</span></li>'
+                                    +'<li>购买日期：<span>2017-02-10 5:30</span></li>'
+                                    +'</ul>';
+                        }
+                        __html += '</li>';
+                        return __html;
+                    }
+
+                    var addMore = function () {
+                        var __html = createHtml();
+                        $('#orderList').append(__html);
+                    };
+                    var addMore2 = function () {
+                        var __html = createHtml2();
+                        $('#orderList2').append(__html);
+                    };
+
+                }
+            };
+
+    $(function () {
+        App.init();
+    });
+</script>
+</body>
+</html>
