@@ -711,13 +711,14 @@ bOilPlugIn.prototype = {
             className = '.' + className;
         }
         $(className).on('input', function() {
+			var $_thisEl = $(this);
             var thisVal = $(this).val().replace(/\s/g, ''), strl = thisVal.length, reg = /^[0-9]+$/;
             if (reg.test(thisVal)) {
                 if (strl > 4) {
 					$(this).blur();
                     thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1 ');
                     $(this).val(thisVal);
-					$(className).focus();
+					_thisEl.focus();
 					
 
                 }
