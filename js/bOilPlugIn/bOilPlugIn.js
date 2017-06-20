@@ -717,7 +717,7 @@ bOilPlugIn.prototype = {
 					$(this).blur();
                     thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1 ');
                     $(this).val(thisVal);
-					$(_this).focus();
+					$(className).focus();
 					
 
                 }
