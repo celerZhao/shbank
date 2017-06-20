@@ -711,7 +711,7 @@ bOilPlugIn.prototype = {
             className = '.' + className;
         }
         $(className).on('input', function() {
-			var $_thisEl = $(this);
+			var _thisEl = $(this);
             var thisVal = $(this).val().replace(/\s/g, ''), strl = thisVal.length, reg = /^[0-9]+$/;
             if (reg.test(thisVal)) {
                 if (strl > 4) {
