@@ -720,7 +720,7 @@ bOilPlugIn.prototype = {
                     $(this).blur();
 					setTimeout(function(){
 						
-						$(this).focus();
+						$(_this).focus();
 					},10)
 
                 }
