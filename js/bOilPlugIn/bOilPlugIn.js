@@ -718,7 +718,10 @@ bOilPlugIn.prototype = {
 
                     $(this).val(thisVal);
                     $(this).blur();
-                        $(this).focus();
+					setTimeout(function(){
+						
+						$(this).focus();
+					},10)
 
                 }
             } else {
