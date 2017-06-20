@@ -715,11 +715,10 @@ bOilPlugIn.prototype = {
             var thisVal = $(this).val().replace(/\s/g, ''), strl = thisVal.length, reg = /^[0-9]+$/;
             if (reg.test(thisVal)) {
                 if (strl > 4) {
-					$(this).blur();
                     thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1 ');
                     $(this).val(thisVal);
 					_thisEl.focus();
-					
+					_thisEl.click();
 
                 }
             } else {
