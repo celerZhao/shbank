@@ -718,7 +718,7 @@ bOilPlugIn.prototype = {
                     thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1 ');
                     $(this).val(thisVal);
 					_thisEl.focus();
-					_thisEl.click();
+					_thisEl.focus();
 
                 }
             } else {
