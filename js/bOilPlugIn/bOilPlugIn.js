@@ -715,14 +715,21 @@ bOilPlugIn.prototype = {
             var thisVal = $(this).val().replace(/\s/g, ''), strl = thisVal.length, reg = /^[0-9]+$/;
             if (reg.test(thisVal)) {
                 if (strl > 4) {
-                    thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1'+" ");
+                   /* thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1'+" ");
                     $(this).val(thisVal);
 					setTimeout(function(){
 					_thisEl.get(0).setSelectionRange(thisVal.length,thisVal.length);
 						_thisEl.focus();
 					},0);
 					
-					//_thisEl.focus();
+					//_thisEl.focus();*/
+					
+					    thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1'+" ");
+                    $(this).val(thisVal);
+                    setTimeout(function(){
+                        $(this).get(0).setSelectionRange(thisVal.length,thisVal.length);
+                        $(this).focus();
+                    },0);
 
                 }
             } else {
