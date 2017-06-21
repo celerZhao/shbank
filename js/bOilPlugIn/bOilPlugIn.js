@@ -727,8 +727,8 @@ bOilPlugIn.prototype = {
 					    thisVal = thisVal.replace(/(\d{4})(?=\d)/g, '$1'+" ");
                     $(this).val(thisVal);
                     setTimeout(function(){
-                        $(this).get(0).setSelectionRange(thisVal.length,thisVal.length);
-                        $(this).focus();
+                        _thisEl.get(0).setSelectionRange(thisVal.length,thisVal.length);
+                        _thisEl.focus();
                     },0);
 
                 }
