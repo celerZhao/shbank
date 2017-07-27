@@ -45,9 +45,25 @@ setPxPerRem();
             <a class="btn btn-primary fs-12 btn2" href="https://c2b.brightoilonline.com/index.php/article-help-appdownload_v2.html">下载光汇云油APP享更多优惠</a>
         </div>
     </div>
+	 <div>
+        
+        <div class="form-group pt-30">
+            <a id="mBtn" class="btn btn-primary btn-danger fs-12 btn1" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">魔窗test</a>
+        </div>
+    </div>
 </div>
 </body>
 <script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
+<script>
+new Mlink({
+    mlink:'https://abdbnd.mlinks.cc/Ac9Z',//短链地址https://abdbnd.mlinks.cc/Ac9Z
+    button:document.querySelector('a#mBtn'),
+	params:{oilCardId:"100110"}
+});
+
+</script>
+
 <script>
     // 判断安卓与IOS客户端
     var u = navigator.userAgent;
