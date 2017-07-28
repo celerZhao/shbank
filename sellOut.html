@@ -51,9 +51,61 @@ setPxPerRem();
             <a id="mBtn" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">魔窗test</a>
         </div>
     </div>
+	
+	<div>
+		<div class="form-group pt-30">
+            <a id="login" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = login</a>
+        </div>
+		<div class="form-group">
+            <a id="register" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = register</a>
+        </div>
+		<div class="form-group">
+            <a id="recommend" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = 'recommend'</a>
+        </div>
+			<div class="form-group">
+            <a id="cashcoupon" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = 'cashcoupon'</a>
+        </div>	
+		<div class="form-group">
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = 'goil'</a>
+        </div>
+		
+	</div>
+	
 </div>
 </body>
 <script src="js/lib/jquery-1.11.3.min.js"></script>
+<script>
+	// 定义json 参数字段
+	var config_json = {
+				"event"		:"",
+				"jump_type"	:"",
+				"jump"		:"",
+				"para"		:{"product_id":""}
+			};		
+		
+	//  传参数 赋值
+	config_json.event = "login"	;
+	config_json.jump_type = "url";
+//	config_json.jump = "https://www.baidu.com";
+	config_json.para.product_id = "555000";
+	var config_string = JSON.stringify(config_json);  
+	alert(config_string)
+	
+	console.log(config_string)
+	
+	console.log("************************")
+	
+	//  取值		
+	var config_to_json = JSON.parse(config_string);  
+	
+	alert(config_to_json.jump_type);
+	console.log(config_to_json)
+	
+	//OCMdel.goCommonAction(config_json)
+
+
+</script>
+
 <script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
 <script>
 new Mlink({
