@@ -76,6 +76,30 @@ setPxPerRem();
 		<div class="form-group">
             <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump6();" style="background-color: #f3f2f2;color: #8e8b8b;">分享</a>
         </div>
+		7） 推荐
+		<div class="form-group">
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump7();" style="background-color: #f3f2f2;color: #8e8b8b;">推荐</a>
+        </div>
+		8） 推荐
+		<div class="form-group">
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump8();" style="background-color: #f3f2f2;color: #8e8b8b;">储油列表</a>
+        </div>
+		
+		9）产品详情（大众储油体验卡、大众储油卡、全国加油卡、）
+		
+		<div class="form-group">
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump9();" style="background-color: #f3f2f2;color: #8e8b8b;">产品详情</a>
+        </div>
+		10）加油卡充值
+		
+		<div class="form-group">
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump10();" style="background-color: #f3f2f2;color: #8e8b8b;">加油卡充值</a>
+        </div>
+		11）、扫码加油
+		
+		<div class="form-group">
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump11();" style="background-color: #f3f2f2;color: #8e8b8b;">扫码加油</a>
+        </div>
 		
 	</div>
 	
@@ -192,6 +216,48 @@ setPxPerRem();
 		
 		OCModel.goCommonAction(config_string);
 	}
+		// 推荐
+	function jump7(){
+		var config_string = jumpConfig({"event":"recommend"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+		// 储油列表
+	function jump8(){
+		var config_string = jumpConfig({"event":"productList"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+	// 产品详情（大众储油体验卡、大众储油卡、全国加油卡、、）
+		// 储油列表
+	function jump9(){
+		var config_string = jumpConfig({"event":"product"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+		// 加油卡充值
+	function jump10(){
+		var config_string = jumpConfig({"event":"recharge"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+		// 扫码加油
+	function jump11(){
+		var config_string = jumpConfig({"event":"scan"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+	
 
 </script>
 
