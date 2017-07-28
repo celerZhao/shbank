@@ -54,19 +54,27 @@ setPxPerRem();
 	
 	<div>1）H5着落页引导注册领取优惠券/领油-> 跳转app的注册->注册且登录成功/记录活动链接pcode->返回原来的【h5着落页】
 		<div class="form-group pt-30">
-            <a id="login" class="btn btn-primary btn-danger fs-12" href="javascript:jump1();" style="background-color: #f3f2f2;color: #8e8b8b;">event = login</a>
+            <a id="login" class="btn btn-primary btn-danger fs-12" href="javascript:jump1();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->register->h5</a>
         </div>
+		2）H5着落页引导登录领取优惠券/领油-> 跳转app的登录->登录成功->返回【h5结果页】
 		<div class="form-group">
-            <a id="register" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = register</a>
+            <a id="register" class="btn btn-primary btn-danger fs-12" href="javascript:jump2();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->h5</a>
         </div>
+		3）H5着落页引导注册/登录领取优惠券/领油-> 跳转app的登录/注册->登录/注册成功->返回【app首页】
 		<div class="form-group">
-            <a id="recommend" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = 'recommend'</a>
+            <a id="recommend" class="btn btn-primary btn-danger fs-12" href="javascript:jump3();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->APP首页</a>
         </div>
-			<div class="form-group">
-            <a id="cashcoupon" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = 'cashcoupon'</a>
+		4）H5着落页引导注册/登录领取优惠券/领油-> 跳转app的登录/注册->登录/注册成功->返回【优惠券列表】
+		<div class="form-group">
+            <a id="cashcoupon" class="btn btn-primary btn-danger fs-12" href="javascript:jump4();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->App'cashcoupon'</a>
         </div>	
+		5）H5着落页引导注册/登录领取优惠券/领油-> 跳转app的登录/注册->登录/注册成功->返回【我的油箱】
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = 'goil'</a>
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump5();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->APP goil</a>
+        </div>
+		6） 分享
+		<div class="form-group">
+            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump6();" style="background-color: #f3f2f2;color: #8e8b8b;">分享</a>
         </div>
 		
 	</div>
@@ -77,23 +85,30 @@ setPxPerRem();
 <script>
 	// 定义json 参数字段
 	function jumpConfig(_config){
-	
 		var config = {};
 		if(_config != undefined){
 			config = _config;
 		}
 		
+		/**
+		array('event'=>'share','para'=>array('promotion_title'=>'shareTitle','promotion_ico'=>'http://www.baidu.com/1.jpg','promotion_text'=>'shareText','promotion_url'=>'http://www.baidu.com/'));
+		*/
+		
 		var config_json = {
 				"event"		:config.event!=undefined ?config.event:"",
 				"jump_type"	:config.jump_type!=undefined ?config.jump_type:"",
 				"jump"		:config.jump!=undefined ?config.jump:"",
-				"para"		:{"product_id":(config.para && config.para.product_id)? config.para.product_id:""}
+				"para"		:{"product_id":(config.para && config.para.product_id)? config.para.product_id:"",
+								"promotion_title":(config.para && config.para.promotion_title)? config.para.promotion_title:"",
+								"promotion_ico":(config.para && config.para.promotion_ico)? config.para.promotion_ico:"",
+								"promotion_text":(config.para && config.para.promotion_text)? config.para.promotion_text:"",
+								"promotion_url":(config.para && config.para.promotion_url)? config.para.promotion_url:""
+								
+								}
 			};	
-			
-			
+					
 		return JSON.stringify(config_json);  
-		
-		
+
 	}
 		
 	//  传参数 赋值
@@ -116,9 +131,9 @@ setPxPerRem();
 
 	/**
 	array('event'=>'register','jump_type'=>'url','jump'=>'http://www.baidu.com/?t=123');
-array('event'=>'register','jump_type'=>'function','jump'=>'productList');
-	*/
-
+	array('event'=>'register','jump_type'=>'function','jump'=>'productList');
+	**/
+	// 注册
 	function jump1(){
 		
 		var config_string = jumpConfig({"event":"register","jump_type":"url","jump":"https://celerzhao.github.io/shbank/sellOut.html"});
@@ -127,10 +142,56 @@ array('event'=>'register','jump_type'=>'function','jump'=>'productList');
 		
 		OCModel.goCommonAction(config_string);
 	}
+	/**
+	array('event'=>'login','jump_type'=>'url','jump'=>'http://www.baidu.com/?t=123');
+	array('event'=>'login','jump_type'=>'function ','jump'=>'product','para'=>array('product_id'=>25002,'type_bn'=>'fixed_litre_term'));
+	*/
+	// 登录
 	function jump2(){
-	
+		var config_string = jumpConfig({"event":"login","jump_type":"url","jump":"https://celerzhao.github.io/shbank/sellOut.html"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
 	}
-
+	// 登录
+	function jump3(){
+		var config_string = jumpConfig({"event":"login","jump_type":"function","jump":"product","para":{"product_id":"25002","type_bn":"fixed_litre_term"}});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+	/**
+	array('event'=>'cashcoupon');
+	**/
+	// 优惠券列表
+	function jump4(){
+		var config_string = jumpConfig({"event":"cashcoupon"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+	// 我的油箱
+	function jump5(){
+		var config_string = jumpConfig({"event":"goil"});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
+	// 分享
+	/**
+	array('event'=>'share','para'=>array('promotion_title'=>'shareTitle','promotion_ico'=>'http://www.baidu.com/1.jpg','promotion_text'=>'shareText','promotion_url'=>'http://www.baidu.com/'));
+	**/
+	function jump6(){
+		var config_string = jumpConfig({"event":"share"，"para":{"promotion_title":"分享标题","promotion_ico":"http://www.baidu.com/1.jpg","promotion_text":"分享描述","promotion_url":"https://www.baidu.com"}});
+		
+		alert(config_string);
+		
+		OCModel.goCommonAction(config_string);
+	}
 
 </script>
 
