@@ -52,9 +52,9 @@ setPxPerRem();
         </div>
     </div>
 	
-	<div>
+	<div>1）H5着落页引导注册领取优惠券/领油-> 跳转app的注册->注册且登录成功/记录活动链接pcode->返回原来的【h5着落页】
 		<div class="form-group pt-30">
-            <a id="login" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = login</a>
+            <a id="login" class="btn btn-primary btn-danger fs-12" href="javascript:jump1();" style="background-color: #f3f2f2;color: #8e8b8b;">event = login</a>
         </div>
 		<div class="form-group">
             <a id="register" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">event = register</a>
@@ -76,17 +76,29 @@ setPxPerRem();
 <script src="js/lib/jquery-1.11.3.min.js"></script>
 <script>
 	// 定义json 参数字段
-	var config_json = {
-				"event"		:"",
-				"jump_type"	:"",
-				"jump"		:"",
-				"para"		:{"product_id":""}
-			};		
+	function jumpConfig(_config){
+	
+		var config = {};
+		if(_config != undefined){
+			config = _config;
+		}
+		
+		var config_json = {
+				"event"		:config.event!=undefined ?config.event:"",
+				"jump_type"	:config.jump_type!=undefined ?config.jump_type:"",
+				"jump"		:config.jump!=undefined ?config.jump:"",
+				"para"		:{"product_id":(config.para && config.para.product_id)? config.para.product_id:""}
+			};	
+			
+			
+		return JSON.stringify(config_json);  
+		
+		
+	}
 		
 	//  传参数 赋值
-	config_json.event = "login"	;
+/*	config_json.event = "login"	;
 	config_json.jump_type = "url";
-//	config_json.jump = "https://www.baidu.com";
 	config_json.para.product_id = "555000";
 	var config_string = JSON.stringify(config_json);  
 	alert(config_string)
@@ -100,8 +112,24 @@ setPxPerRem();
 	
 	alert(config_to_json.jump_type);
 	console.log(config_to_json)
+	*/
+
+	/**
+	array('event'=>'register','jump_type'=>'url','jump'=>'http://www.baidu.com/?t=123');
+array('event'=>'register','jump_type'=>'function','jump'=>'productList');
+	*/
+
+	function jump1(){
+		
+		var config_string = jumpConfig({"event":"register","jump_type":"url","jump":"https://celerzhao.github.io/shbank/sellOut.html"});
+		
+		alert(config_string);
+		
+		OCMdel.goCommonAction(config_string);
+	}
+	function jump2(){
 	
-	//OCMdel.goCommonAction(config_json)
+	}
 
 
 </script>
