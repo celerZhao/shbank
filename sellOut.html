@@ -54,51 +54,51 @@ setPxPerRem();
 	
 	<div>1）H5着落页引导注册领取优惠券/领油-> 跳转app的注册->注册且登录成功/记录活动链接pcode->返回原来的【h5着落页】
 		<div class="form-group pt-30">
-            <a id="login" class="btn btn-primary btn-danger fs-12" href="javascript:jump1();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->register->h5</a>
+            <a id="jump1" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">h5->register->h5</a>
         </div>
 		2）H5着落页引导登录领取优惠券/领油-> 跳转app的登录->登录成功->返回【h5结果页】
 		<div class="form-group">
-            <a id="register" class="btn btn-primary btn-danger fs-12" href="javascript:jump2();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->h5</a>
+            <a id="jump2" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->h5</a>
         </div>
 		3）H5着落页引导注册/登录领取优惠券/领油-> 跳转app的登录/注册->登录/注册成功->返回【app首页】
 		<div class="form-group">
-            <a id="recommend" class="btn btn-primary btn-danger fs-12" href="javascript:jump3();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->APP首页</a>
+            <a id="jump3" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->APP首页</a>
         </div>
 		4）H5着落页引导注册/登录领取优惠券/领油-> 跳转app的登录/注册->登录/注册成功->返回【优惠券列表】
 		<div class="form-group">
-            <a id="cashcoupon" class="btn btn-primary btn-danger fs-12" href="javascript:jump4();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->App'cashcoupon'</a>
+            <a id="jump4" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->App'cashcoupon'</a>
         </div>	
 		5）H5着落页引导注册/登录领取优惠券/领油-> 跳转app的登录/注册->登录/注册成功->返回【我的油箱】
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump5();" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->APP goil</a>
+            <a id="jump5" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">h5->login->APP goil</a>
         </div>
 		6） 分享
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump6();" style="background-color: #f3f2f2;color: #8e8b8b;">分享</a>
+            <a id="jump6" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">分享</a>
         </div>
 		7） 推荐
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump7();" style="background-color: #f3f2f2;color: #8e8b8b;">推荐</a>
+            <a id="jump7" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">推荐</a>
         </div>
 		8） 推荐
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump8();" style="background-color: #f3f2f2;color: #8e8b8b;">储油列表</a>
+            <a id="jump8" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">储油列表</a>
         </div>
 		
 		9）产品详情（大众储油体验卡、大众储油卡、全国加油卡、）
 		
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump9();" style="background-color: #f3f2f2;color: #8e8b8b;">产品详情</a>
+            <a id="jump9" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">产品详情</a>
         </div>
 		10）加油卡充值
 		
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump10();" style="background-color: #f3f2f2;color: #8e8b8b;">加油卡充值</a>
+            <a id="jump10" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">加油卡充值</a>
         </div>
 		11）、扫码加油
 		
 		<div class="form-group">
-            <a id="goil" class="btn btn-primary btn-danger fs-12" href="javascript:jump11();" style="background-color: #f3f2f2;color: #8e8b8b;">扫码加油</a>
+            <a id="jump11" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">扫码加油</a>
         </div>
 		
 	</div>
@@ -107,8 +107,24 @@ setPxPerRem();
 </body>
 <script src="js/lib/jquery-1.11.3.min.js"></script>
 <script>
+
+var Page = {};
+var UA = navigator.userAgent;
+
+Page.is_weixin = function () {
+	var au = UA.toLowerCase();
+	return au.match(/MicroMessenger/i) == 'micromessenger' ? true : false;
+};
+	
+ Page.GetQueryString = function(name) {
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+
+
 	// 定义json 参数字段
-	function jumpConfig(_config){
+ Page.jumpConfig = function(_config){
 		var config = {};
 		if(_config != undefined){
 			config = _config;
@@ -127,7 +143,12 @@ setPxPerRem();
 								"promotion_title":(config.para && config.para.promotion_title)? config.para.promotion_title:"",
 								"promotion_ico":(config.para && config.para.promotion_ico)? config.para.promotion_ico:"",
 								"promotion_text":(config.para && config.para.promotion_text)? config.para.promotion_text:"",
-								"promotion_url":(config.para && config.para.promotion_url)? config.para.promotion_url:""
+								"promotion_url":(config.para && config.para.promotion_url)? config.para.promotion_url:"",
+								
+								
+								"productId":(config.para && config.para.productId)? config.para.productId:"",
+								"productType":(config.para && config.para.productType)? config.para.productType:"",
+								"productName":(config.para && config.para.productName)? config.para.productName:""
 								
 								
 								}
@@ -136,6 +157,39 @@ setPxPerRem();
 		return JSON.stringify(config_json);  
 
 	}
+
+$(function(){
+	Page.init = function(){
+		if(Page.is_weixin == true){
+			alert('请点击右上角，选择用浏览器打开连接');
+
+
+		}else{
+			$("#jump1").on("click",function(){jump1()});
+			$("#jump2").on("click",function(){jump2()});
+			$("#jump3").on("click",function(){jump3()});
+			$("#jump4").on("click",function(){jump4()});
+			$("#jump5").on("click",function(){jump5()});
+			$("#jump6").on("click",function(){jump6()});
+			$("#jump7").on("click",function(){jump7()});
+			$("#jump8").on("click",function(){jump8()});
+			$("#jump9").on("click",function(){jump9()});
+			$("#jump10").on("click",function(){jump10()});
+			$("#jump11").on("click",function(){jump11()});
+		
+		}
+		
+		
+
+
+	}
+	
+	Page.init()
+
+})
+
+
+
 		
 	//  传参数 赋值
 /*	config_json.event = "login"	;
@@ -162,7 +216,7 @@ setPxPerRem();
 	// 注册
 	function jump1(){
 		
-		var config_string = jumpConfig({"event":"register","jump_type":"url","jump":"https://celerzhao.github.io/shbank/sellOut.html"});
+		var config_string = Page.jumpConfig({"event":"register","jump_type":"url","jump":"https://celerzhao.github.io/shbank/sellOut.html"});
 		
 		alert(config_string);
 		
@@ -174,7 +228,7 @@ setPxPerRem();
 	*/
 	// 登录
 	function jump2(){
-		var config_string = jumpConfig({"event":"login","jump_type":"url","jump":"https://celerzhao.github.io/shbank/oil-card-notice.html"});
+		var config_string = Page.jumpConfig({"event":"login","jump_type":"url","jump":"https://celerzhao.github.io/shbank/oil-card-notice.html"});
 		
 		alert(config_string);
 		
@@ -182,7 +236,7 @@ setPxPerRem();
 	}
 	// 登录
 	function jump3(){
-		var config_string = jumpConfig({"event":"login","jump_type":"function","jump":"product","para":{"product_id":"25002","type_bn":"fixed_litre_term"}});
+		var config_string = Page.jumpConfig({"event":"login","jump_type":"function","jump":"product","para":{"product_id":"25002","type_bn":"fixed_litre_term"}});
 		
 		alert(config_string);
 		
@@ -193,7 +247,7 @@ setPxPerRem();
 	**/
 	// 优惠券列表
 	function jump4(){
-		var config_string = jumpConfig({"event":"cashcoupon"});
+		var config_string = Page.jumpConfig({"event":"cashcoupon"});
 		
 		alert(config_string);
 		
@@ -201,7 +255,7 @@ setPxPerRem();
 	}
 	// 我的油箱
 	function jump5(){
-		var config_string = jumpConfig({"event":"goil"});
+		var config_string = Page.jumpConfig({"event":"goil"});
 		
 		alert(config_string);
 		
@@ -212,7 +266,7 @@ setPxPerRem();
 	array('event'=>'share','para'=>array('promotion_title'=>'shareTitle','promotion_ico'=>'http://www.baidu.com/1.jpg','promotion_text'=>'shareText','promotion_url'=>'http://www.baidu.com/'));
 	**/
 	function jump6(){
-		var config_string = jumpConfig({"event":"share","para":{"promotion_title":"分享标题","promotion_ico":"http://www.baidu.com/1.jpg","promotion_text":"分享描述","promotion_url":"https://www.baidu.com"}});
+		var config_string = Page.jumpConfig({"event":"share","para":{"promotion_title":"分享标题","promotion_ico":"http://www.baidu.com/1.jpg","promotion_text":"分享描述","promotion_url":"https://www.baidu.com"}});
 		
 		alert(config_string);
 		
@@ -220,7 +274,7 @@ setPxPerRem();
 	}
 		// 推荐
 	function jump7(){
-		var config_string = jumpConfig({"event":"recommend"});
+		var config_string = Page.jumpConfig({"event":"recommend"});
 		
 		alert(config_string);
 		
@@ -228,7 +282,7 @@ setPxPerRem();
 	}
 		// 储油列表
 	function jump8(){
-		var config_string = jumpConfig({"event":"productList"});
+		var config_string = Page.jumpConfig({"event":"productList"});
 		
 		alert(config_string);
 		
@@ -237,7 +291,7 @@ setPxPerRem();
 	// 产品详情（大众储油体验卡、大众储油卡、全国加油卡、、）
 		// 储油列表
 	function jump9(){
-		var config_string = jumpConfig({"event":"product"});
+		var config_string = Page.jumpConfig({"event":"product"});
 		
 		alert(config_string);
 		
@@ -245,7 +299,7 @@ setPxPerRem();
 	}
 		// 加油卡充值
 	function jump10(){
-		var config_string = jumpConfig({"event":"recharge"});
+		var config_string = Page.jumpConfig({"event":"recharge"});
 		
 		alert(config_string);
 		
@@ -253,7 +307,7 @@ setPxPerRem();
 	}
 		// 扫码加油
 	function jump11(){
-		var config_string = jumpConfig({"event":"scan"});
+		var config_string = Page.jumpConfig({"event":"scan"});
 		
 		alert(config_string);
 		
