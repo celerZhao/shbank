@@ -357,7 +357,7 @@ $(function(){
 
 <script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
 <script>
-/*
+
 new Mlink({
     mlink:'https://abdbnd.mlinks.cc/Ac9Z',//短链地址https://abdbnd.mlinks.cc/Ac9Z
     button:document.querySelector('a#mBtn'),
@@ -368,7 +368,7 @@ new Mlink({
 			"productName":(config.para && config.para.productName)? config.para.productName:""							
 		}
 });
-*/
+
 
 // 浏览器链接 通过魔窗 唤起APP 传参数
  Page.McDirectApp = function(linkID,_config){
@@ -377,7 +377,7 @@ new Mlink({
 			config = _config;
 		}
 				
-		// console.log(JSON.stringify(config));
+		alert(config)
 		var config_json = {
 				"key":config.key!=undefined ?config.key:"",
 				"productId"		:config.productId!=undefined ?config.productId:"",
