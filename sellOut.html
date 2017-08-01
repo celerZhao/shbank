@@ -31,9 +31,7 @@ setPxPerRem();
         <i class="icon-xiangxiafanye back"></i>
         <div class="tit">产品下架</div>
     </div>
-    <div class="row sell-out">
-        <img class="sells" src="img/personalCenter/img2.jpg">
-    </div>
+ 
 	<div>
 	   <a href="znn://aa.bb:80/test?p=12&d=1&product_id=24693">test</a>
 	</div>
@@ -80,7 +78,7 @@ setPxPerRem();
 		<div class="form-group">
             <a id="jump7" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">推荐</a>
         </div>
-		8） 推荐
+		8） 储油列表
 		<div class="form-group">
             <a id="jump8" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">储油列表</a>
         </div>
@@ -102,6 +100,47 @@ setPxPerRem();
         </div>
 		
 	</div>
+	<div class="text-center text-danger mt-30 mb-30">******华丽的分割线*******</div>
+	<div>
+		（一）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP产品
+		
+		<div class="form-group">
+            <a id="jump_1" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">立即购买</a>
+        </div>
+		
+		（二）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->  APP分享详情页面
+		
+		<div class="form-group">
+            <a id="jump_2" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">APP分享</a>
+        </div>
+		
+		（三）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP产品列表页面
+		
+		<div class="form-group">
+            <a id="jump_3" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">产品列表</a>
+        </div>
+		
+		
+		（四）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP单个产品详情
+		
+		<div class="form-group">
+            <a id="jump_4" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">单个产品详情</a>
+        </div>
+		
+		（五）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP我的油箱
+		
+		<div class="form-group">
+            <a id="jump_5" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">我的油箱</a>
+        </div>
+		
+		（六）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP优惠券
+		
+		<div class="form-group">
+            <a id="jump_6" class="btn btn-primary btn-danger fs-12" href="javascript:;" style="background-color: #f3f2f2;color: #8e8b8b;">优惠券</a>
+        </div>
+		
+	</div>
+	
 	
 </div>
 </body>
@@ -144,13 +183,7 @@ Page.is_weixin = function () {
 								"promotion_ico":(config.para && config.para.promotion_ico)? config.para.promotion_ico:"",
 								"promotion_text":(config.para && config.para.promotion_text)? config.para.promotion_text:"",
 								"promotion_url":(config.para && config.para.promotion_url)? config.para.promotion_url:"",
-								
-								
-								"productId":(config.para && config.para.productId)? config.para.productId:"",
-								"productType":(config.para && config.para.productType)? config.para.productType:"",
-								"productName":(config.para && config.para.productName)? config.para.productName:""
-								
-								
+							
 								}
 			};	
 					
@@ -164,7 +197,7 @@ $(function(){
 			alert('请点击右上角，选择用浏览器打开连接');
 
 
-		}else{
+		}else if(Page.GetQueryString("fromApp")){	// APP打开H5
 			$("#jump1").on("click",function(){jump1()});
 			$("#jump2").on("click",function(){jump2()});
 			$("#jump3").on("click",function(){jump3()});
@@ -176,8 +209,13 @@ $(function(){
 			$("#jump9").on("click",function(){jump9()});
 			$("#jump10").on("click",function(){jump10()});
 			$("#jump11").on("click",function(){jump11()});
+		}else{		
+		
+		
 		
 		}
+		
+		
 		
 		
 
@@ -319,21 +357,81 @@ $(function(){
 
 <script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
 <script>
+/*
 new Mlink({
     mlink:'https://abdbnd.mlinks.cc/Ac9Z',//短链地址https://abdbnd.mlinks.cc/Ac9Z
     button:document.querySelector('a#mBtn'),
-	cparams:{oilCardId:"100110"}
+	cparams:{"key":"100110",	
+								
+			"productId":(config.para && config.para.productId)? config.para.productId:"",
+			"productType":(config.para && config.para.productType)? config.para.productType:"",
+			"productName":(config.para && config.para.productName)? config.para.productName:""							
+		}
 });
+*/
+
+// 浏览器链接 通过魔窗 唤起APP 传参数
+ Page.McDirectApp = function(linkID,_config){
+		var config = {};
+		if(_config != undefined){
+			config = _config;
+		}
+				
+		var config_json = {
+				"key":config.key!=undefined ?config.key:"",
+				"productId"		:config.productId!=undefined ?config.productId:"",
+				"productType"	:config.productType!=undefined ?config.productType:"",
+				"productName"		:config.productName!=undefined ?config.productName:"",
+		
+			};	
+					
+		new Mlink({
+				mlink:'https://abdbnd.mlinks.cc/Ac9Z',//短链地址https://abdbnd.mlinks.cc/Ac9Z
+				button:document.querySelector('a#'+linkID),
+				cparams:config_json
+			}); 
+
+	};
+	
+	$(function(){
+	/**
+		推荐有奖页  key=recommend  ; 不需登录
+
+		产品列表  key =productList;  不需要登录
+		 
+		单个产品详情 key=product  productId(产品id)   productType(产品类型)  productName(产品名字)   需要登录
+
+		我的油箱   key=goil  需要登录
+
+		优惠券 key=cashcoupon   需要登录  EVoucherActivity2_7_3
+		
+	**/
+		Page.initMc=function (){
+			// （一）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP产品
+			 Page.McDirectApp("jump_1",{"key":"product","productId":"24675","productType":"","productName":""})
+			 
+			// （二）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功-> APP推荐有奖
+			 Page.McDirectApp("jump_2",{"key":"recommend"})
+			 
+			// （三）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP产品列表页面
+			 Page.McDirectApp("jump_3",{"key":"productList"})
+			 
+			 //（四）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP单个产品详情
+			 Page.McDirectApp("jump_4",{"key":"product","productId":"24675","productType":"","productName":"大众储油卡卡卡"})
+			 
+			 //（五）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP我的油箱
+			 Page.McDirectApp("jump_5",{"key":"goil"})
+			 
+			 //（六）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP优惠券
+			 Page.McDirectApp("jump_6",{"key":"cashcoupon"})
+			 
+		}
+		
+		Page.initMc();
+		
+	
+	});
 
 </script>
 
-<script>
-    // 判断安卓与IOS客户端
-/*var u = navigator.userAgent;
-    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-    if(isAndroid) {
-        $('.btn2').hide();
-    }else if(isiOS) {$('.btn1').hide();}*/
-</script>
 </html>
