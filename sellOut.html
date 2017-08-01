@@ -381,7 +381,12 @@ new Mlink({
 				"key":config.key!=undefined ?config.key:"",
 				"productId"		:config.productId!=undefined ?config.productId:"",
 				"productType"	:config.productType!=undefined ?config.productType:"",
-				"productName"		:config.productName!=undefined ?config.productName:"",
+				"productName"	:config.productName!=undefined ?config.productName:"",
+				
+				"promotion_title"	:config.promotion_title!=undefined ?config.promotion_title:"",
+				"promotion_ico"		:config.promotion_ico!=undefined ?config.promotion_ico:"",
+				"promotion_text"	:config.promotion_text!=undefined ?config.promotion_text:"",
+				"promotion_url"		:config.promotion_url!=undefined ?config.promotion_url:""
 		
 			};	
 					
@@ -405,13 +410,19 @@ new Mlink({
 
 		优惠券 key=cashcoupon   需要登录  EVoucherActivity2_7_3
 		
+		分享
+		     String title = goComonActionBean.getPromotion_title();
+            String icon = goComonActionBean.getPromotion_ico();
+            String text = goComonActionBean.getPromotion_text();
+            String url = goComonActionBean.getPromotion_url();
+		
 	**/
 		Page.initMc=function (){
 			// （一）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP产品
 			 Page.McDirectApp("jump_1",{"key":"product","productId":"24675","productType":"","productName":""})
 			 
-			// （二）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功-> APP推荐有奖
-			 Page.McDirectApp("jump_2",{"key":"recommend"})
+			// （二）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功-> APP分享
+			 Page.McDirectApp("jump_2",{"key":"recommend","promotion_title":"光汇分享title","promotion_ico":"https://democ2b.brightoilonline.com/themes/bwoil_v2/images/img/logo.png","promotion_text":"光汇分享text","promotion_url":"https://www.baidu.com",})
 			 
 			// （三）浏览器H5着陆页引导购买产品-> 跳转APP登录->登录成功->跳转到APP产品列表页面
 			 Page.McDirectApp("jump_3",{"key":"productList"})
